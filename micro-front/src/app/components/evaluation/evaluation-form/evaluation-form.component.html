@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <h2>{{ isEditMode ? 'Edit' : 'Add' }} Department Evaluation 📋</h2>
+  
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+  
+    <div class="card shadow-sm mt-4">
+      <div class="card-body">
+        <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit()">
+  
+          <!-- Department Dropdown (instead of Formation) -->
+          <div class="mb-3">
+            <label for="departmentId" class="form-label">Select Department</label>
+            <select id="departmentId" class="form-select" formControlName="departmentId"
+              [ngClass]="{ 'is-invalid': submitted && f['departmentId'].errors }">
+              <option value="">-- Select Department --</option>
+              <option *ngFor="let department of departments" [value]="department.idDepart">
+                {{ department.nomDepart }}
+              </option>
+              
+              
+            </select>
+            <div *ngIf="submitted && f['departmentId'].errors" class="invalid-feedback">
+              Department selection is required.
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="titre" class="form-label">Title</label>
+            <input type="text" id="titre" class="form-control" formControlName="titre"
+              [ngClass]="{ 'is-invalid': submitted && f['titre'].errors }">
+            <div *ngIf="submitted && f['titre'].errors" class="invalid-feedback">
+              Title is required.
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" class="form-control" rows="3" formControlName="description"></textarea>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="dateEvaluation" class="form-label">Evaluation Date</label>
+              <input type="date" id="dateEvaluation" class="form-control" formControlName="dateEvaluation"
+                [ngClass]="{ 'is-invalid': submitted && f['dateEvaluation'].errors }">
+              <div *ngIf="submitted && f['dateEvaluation'].errors" class="invalid-feedback">
+                Date is required.
+              </div>
+            </div>
+  
+            <div class="col-md-6 mb-3">
+              <label for="noteMaximale" class="form-label">Max Grade</label>
+              <input type="number" id="noteMaximale" class="form-control" formControlName="noteMaximale"
+                [ngClass]="{ 'is-invalid': submitted && f['noteMaximale'].errors }" min="0">
+              <div *ngIf="submitted && f['noteMaximale'].errors" class="invalid-feedback">
+                Max Grade is required and must be positive.
+              </div>
+            </div>
+          </div>
+  
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary me-2" (click)="onCancel()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="loading">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+              {{ isEditMode ? 'Update' : 'Create' }}
+            </button>
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>
+  

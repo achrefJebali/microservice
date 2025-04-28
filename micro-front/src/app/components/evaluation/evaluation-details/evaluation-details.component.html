@@ -1,0 +1,27 @@
+<div class="container-fluid mt-4">
+    <h2>Evaluation Details 📋</h2>
+  
+    <div *ngIf="loading" class="text-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+  
+    <div *ngIf="evaluation && !loading" class="card shadow-sm mt-3">
+      <div class="card-body">
+        <h4 class="card-title mb-3">{{ evaluation.titre }}</h4>
+  
+        <p><strong>Department ID:</strong> {{ evaluation.departmentId }}</p>
+        <p><strong>Description:</strong> {{ evaluation.description || 'No description' }}</p>
+        <p><strong>Date:</strong> {{ evaluation.dateEvaluation | date: 'mediumDate' }}</p>
+        <p><strong>Maximum Grade:</strong> {{ evaluation.noteMaximale }}</p>
+  
+        <button class="btn btn-secondary mt-3" (click)="goBack()">← Back</button>
+      </div>
+    </div>
+  </div>
+  
