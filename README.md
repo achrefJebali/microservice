@@ -21,12 +21,12 @@ Le projet est structuré en plusieurs microservices indépendants, chacun respon
 ## Prérequis
 - Java 17 ou supérieur
 - Maven
-- Docker (optionnel, pour l'orchestration)
+- Docker
 
 ## Démarrage rapide
 1. Cloner le dépôt :
    ```bash
-   git clone <url-du-repo>
+   git clone https://github.com/achrefJebali/microservice.git
    ```
 2. Construire les services :
    ```bash
@@ -36,9 +36,3 @@ Le projet est structuré en plusieurs microservices indépendants, chacun respon
 3. Lancer les microservices :
    - Démarrer le serveur de configuration puis les autres services.
    - Utiliser les commandes Maven ou Docker Compose si disponible.
-
-## Auteur
-- Projet réalisé par Achref Jebali et contributeurs.
-
-## Licence
-Ce projet est distribué sous licence MIT.
